@@ -14,8 +14,9 @@ addons:
 before_install:
   - if [ $TRAVIS_OS_NAME = windows ]; then choco install cmake; fi
 script:
-- cmake
+- mkdir build
 - cd build
+- cmake ..
 - make
 before_deploy:
 - doxygen
