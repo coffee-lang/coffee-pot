@@ -16,9 +16,8 @@ addons:
 before_install:
   - if [ $TRAVIS_OS_NAME = windows ]; then choco install cmake; choco install doxygen.install; fi
 script:
-- mkdir build
-- cmake -S . -B build
-- make
+- cmake -Bbuild -H.
+- make -C build
 before_deploy:
 - doxygen
 deploy:
