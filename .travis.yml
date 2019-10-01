@@ -8,11 +8,13 @@ addons:
     packages:
       - cmake-data
       - cmake
+      - doxygen
   homebrew:
     packages:
     - cmake
+    - doxygen
 before_install:
-  - if [ $TRAVIS_OS_NAME = windows ]; then choco install cmake; fi
+  - if [ $TRAVIS_OS_NAME = windows ]; then choco install cmake; choco install doxygen.install; fi
 script:
 - mkdir build
 - cd build
