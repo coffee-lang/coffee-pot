@@ -1,0 +1,29 @@
+language: cpp
+os:
+  - linux
+  - macos
+  - windows
+addons:
+  apt:
+    packages:
+      - cmake-data
+      - cmake
+  homebrew:
+    packages:
+    - cmake
+before_install:
+  - if [ $TRAVIS_OS_NAME = windows ]; then choco install cmake; fi
+script:
+- cmake
+- cd build
+- make
+before_deploy:
+- doxygen
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  target_branch: gh-pages
+  local_dir: ./doc/html/
+  on:
+    branch: master
