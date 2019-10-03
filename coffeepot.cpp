@@ -1,3 +1,21 @@
+/*
+ * CoffeePot, the official VM for the Coffee programming language.
+ * Copyright (C) 2019 Coffee Developers
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 #include "coffeepot.hpp"
 
 #include <stdexcept>
@@ -50,14 +68,16 @@ void CoffeePot::start(char *inFile) {
 	}
 	started = true;
 	if (!is_file_cup(inFile)) {
-		_vm_err("Given file " + std::string(inFile) + " isn't a valid cup file");
+		_vm_err(
+				"Given file " + std::string(inFile)
+						+ " isn't a valid cup file");
 	}
 }
 
 void print_license() {
 	std::cout
 			<< "CoffeePot. The official VM for the Coffee programming language. \n\
-    Copyright (C) 2019  Bowser65 \n\
+    Copyright (C) 2019 Coffee Developers \n\
  \n\
     This program is free software: you can redistribute it and/or modify \n\
     it under the terms of the GNU Affero General Public License as \n\
