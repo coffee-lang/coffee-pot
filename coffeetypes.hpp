@@ -16,52 +16,54 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  * *******************************
- * coffeepot.hpp
+ * coffeetypes.hpp
  *
- *  Created on: Sep 30, 2019
+ *  Created on: Oct 11, 2019
  *      Author: vinceh121
  */
 
-#ifndef COFFEEPOT_HPP_
-#define COFFEEPOT_HPP_
+#ifndef COFFEETYPES_HPP_
+#define COFFEETYPES_HPP_
 
 #include <string>
-#include "coffeetypes.hpp"
+#include <any>
 
-#define COFFEE_POT // Used by implementing programs to detect presence of API
-#define COFFEE_POT_VERSION "0.0.1"
-#define POT_MAGIC_NUMBER 0xC0FFEE
+enum CoffeeType {
+	Byte, Char, Int, Long, Float, Double, String, Array, Object
+};
 
-bool is_file_cup(char *file);
-void _vm_info(std::string text);
-void _vm_err(std::string text);
-
-class CoffeePot {
+template<class T>
+class CoffeeValue {
 private:
-	bool started = false;
-	bool node = false;
-public:
-	CoffeePot();
-	/**
-	 * Returns whether the instance of the VM is running as a node in a network.
-	 */
-	bool is_node();
-	/**
-	 * Set this instance of the VM to run as a node in a network
-	 */
-	void set_as_node();
+	CoffeeType type;
+	std::any value;
 
-	/**
-	 * Starts this instance of the VM.
-	 * This method cannot be called twice and throws an exception when it is.
-	 */
-	void start(char *fileIn);
-	/**
-	 * Returns whether the CoffeePot::start() method has been called.
-	 */
-	bool is_started();
+public:
+	CoffeeType get_type() {
+		return type;
+	}
+
+	T as(); //TODO proper templating
 
 };
 
+class CoffeeVariable {
+private:
+	CoffeeType type;
+	std::string name;
+public:
+	/**
+	 * Returns the variable's declared type
+	 */
+	CoffeeType get_type() {
+		return type;
+	}
+	/**
+	 * Returns the variable's name
+	 */
+	std::string get_name() {
+		return name;
+	}
+};
 
-#endif /* COFFEEPOT_HPP_ */
+#endif /* COFFEETYPES_HPP_ */

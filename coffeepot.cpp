@@ -34,13 +34,13 @@ bool is_file_cup(char *file) {
 	return fin == POT_MAGIC_NUMBER;
 }
 
-void _vm_info(std::string text) {
+void _vm_info(const std::string text) {
 	if (quiet)
 		return;
 	std::cout << text << std::endl;
 }
 
-void _vm_err(std::string text) {
+void _vm_err(const std::string text) {
 	if (quiet)
 		return;
 	std::cerr << text << std::endl;
@@ -76,7 +76,7 @@ void CoffeePot::start(char *inFile) {
 
 void print_license() {
 	std::cout
-			<< "CoffeePot. The official VM for the Coffee programming language. \n\
+			<< "CoffeePot, the official VM for the Coffee programming language. \n\
     Copyright (C) 2019 Coffee Developers \n\
  \n\
     This program is free software: you can redistribute it and/or modify \n\
@@ -109,11 +109,13 @@ void print_help() {
 }
 
 void unknown_arg(char *arg) {
+
 	_vm_err("Unknown argument \"" + std::string(arg) + "\"");
 	std::exit(-1);
 }
 
 int main(int argc, char **argv) {
+	std::cout << __cplusplus << std::endl;
 	if (argc <= 1)
 		print_help();
 	CoffeePot *cof = new CoffeePot();
