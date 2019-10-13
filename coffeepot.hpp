@@ -30,7 +30,7 @@
 
 #define COFFEE_POT // Used by implementing programs to detect presence of API
 #define COFFEE_POT_VERSION "0.0.1"
-#define POT_MAGIC_NUMBER 0xC0FFEE
+#define CUP_MAGIC_NUMBER 0xC0FFEE
 
 bool is_file_cup(char *file);
 void _vm_info(std::string text);
