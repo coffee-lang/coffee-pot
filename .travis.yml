@@ -5,7 +5,10 @@ os:
   - windows
 addons:
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
     packages:
+      - g++-7
       - cmake-data
       - cmake
       - doxygen
