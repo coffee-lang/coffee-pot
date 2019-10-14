@@ -31,7 +31,7 @@ bool quiet = false;
 bool is_file_cup(char *file) {
 	std::ifstream in(file);
 	int fin = ((in.get() & 0xFF) << 16) | ((in.get() & 0xFF) << 8) | in.get();
-	return fin == CUT_MAGIC_NUMBER;
+	return fin == POWDDER_MAGIC_NUMBER;
 }
 
 void _vm_info(const std::string text) {

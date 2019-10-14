@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project (coffeepot)
 
-add_executable(coffeepot coffeepot.cpp)
+add_executable(coffeepot src/coffeepot.cpp)
