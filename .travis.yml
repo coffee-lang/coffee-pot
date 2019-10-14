@@ -21,6 +21,7 @@ addons:
 before_install:
   - if [ $TRAVIS_OS_NAME = windows ]; then choco install cmake; choco install doxygen.install; choco install make; refreshenv; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then CC=gcc-7 && CXX=g++-7; fi
+  - if [ $TRAVIS_OS_NAME = linux ]; then CC=gcc-7 && CXX=g++-7; fi
 script:
 - cmake -Bbuild -H.
 - make -C build
