@@ -39,6 +39,10 @@ private:
 	std::any value;
 
 public:
+	CoffeeValue(CoffeeType _type, std::any _value) {
+		type = _type;
+		value = _value;
+	}
 
 	~CoffeeValue() {
 		delete &value;
@@ -58,9 +62,9 @@ class CoffeeVariable {
 private:
 	CoffeeType type;
 	std::string name;
-	CoffeeValue value;
+	CoffeeValue *value;
 public:
-	CoffeeVariable(std::string _name, CoffeeType _type, CoffeeValue _value) {
+	CoffeeVariable(std::string _name, CoffeeType _type, CoffeeValue *_value) {
 		name = _name;
 		type = _type;
 		value = _value;
@@ -69,6 +73,7 @@ public:
 	~CoffeeVariable() {
 		delete &value;
 	}
+
 	/**
 	 * Returns the variable's declared type
 	 */
@@ -83,12 +88,12 @@ public:
 		return name;
 	}
 
-	CoffeeValue get_value() {
+	CoffeeValue* get_value() {
 		return value;
 	}
 
 	bool has_value() {
-		return value.get_value().has_value();
+		return value->get_value().has_value();
 	}
 
 
