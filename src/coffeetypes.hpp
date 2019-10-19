@@ -27,71 +27,68 @@
 
 #include <string>
 #include <any>
+#include <utility>
 
 enum CoffeeType {
-	Byte, Char, Int, Long, Float, Double, String, Array, Object
+    Byte, Char, Int, Long, Float, Double, String, Array, Object
 };
 
 
 class CoffeeValue {
 private:
-	CoffeeType type;
-	std::any value;
-
+    CoffeeType type;
+    std::any value;
 public:
+    ~CoffeeValue() {
+        delete &value;
+    }
 
-	~CoffeeValue() {
-		delete &value;
-	}
+    CoffeeType get_type() {
+        return type;
+    }
 
-	CoffeeType get_type() {
-		return type;
-	}
-
-	std::any get_value() {
-		return value;
-	}
-
+    std::any get_value() {
+        return value;
+    }
 };
 
 class CoffeeVariable {
 private:
-	CoffeeType type;
-	std::string name;
-	CoffeeValue value;
+    CoffeeType type;
+    std::string name;
+    CoffeeValue value;
 public:
-	CoffeeVariable(std::string _name, CoffeeType _type, CoffeeValue _value) {
-		name = _name;
-		type = _type;
-		value = _value;
-	}
+    CoffeeVariable(std::string _name, CoffeeType _type, CoffeeValue _value) {
+        name = std::move(_name);
+        type = _type;
+        value = _value;
+    }
 
-	~CoffeeVariable() {
-		delete &value;
-	}
-	/**
-	 * Returns the variable's declared type
-	 */
-	CoffeeType get_type() {
-		return type;
-	}
+    ~CoffeeVariable() {
+        delete &value;
+    }
 
-	/**
-	 * Returns the variable's name
-	 */
-	std::string get_name() {
-		return name;
-	}
+    /**
+     * Returns the variable's declared type
+     */
+    CoffeeType get_type() {
+        return type;
+    }
 
-	CoffeeValue get_value() {
-		return value;
-	}
+    /**
+     * Returns the variable's name
+     */
+    std::string get_name() {
+        return name;
+    }
 
-	bool has_value() {
-		return value.get_value().has_value();
-	}
+    CoffeeValue get_value() {
+        return value;
+    }
 
-
+    bool has_value() {
+        return value.get_value().has_value();
+    }
 };
 
 #endif /* COFFEETYPES_HPP_ */
