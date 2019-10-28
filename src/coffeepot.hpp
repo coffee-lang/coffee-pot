@@ -26,7 +26,7 @@
 #define COFFEEPOT_HPP_
 
 #include <string>
-#include "coffeetypes.hpp"
+#include <coffee/coffeetypes.hpp>
 
 #define COFFEE_POT // Used by implementing programs to detect presence of API
 #define COFFEE_POT_VERSION "0.0.1"
