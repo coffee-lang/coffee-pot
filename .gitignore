@@ -6,4 +6,5 @@
 
 .project
 .cproject
-
+.idea
+cmake-build-debug
